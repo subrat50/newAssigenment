@@ -1,0 +1,11 @@
+const { request } = require("express")
+const express=require("express")
+const router=express.Router()
+const {createUser,loginUser,updateuser, getUser, deleteuser}=require("../controllers/userController.js")
+const {authenticate,authorisation}=require("../middlewire/auth")
+router.post("/register",createUser)
+router.post("/login",loginUser)
+router.get("/user/:userId",getUser)
+router.put("/user/:userId",authenticate,authorisation,updateuser)
+router.delete("/user/:userId",authenticate,authorisation,deleteuser)
+module.exports=router
